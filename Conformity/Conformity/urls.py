@@ -20,7 +20,7 @@ from poll.views import landing_page, CreateQuizView, DetailQuizView, show_questi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landing_page),
+    path('', landing_page, name='accueil'),
     path('quiz/show/<str:choice>', show_questions, name='show-questions'),
     path('quiz/create/', CreateQuizView.as_view(), name='quiz-create'),
     path('quiz/<int:pk>/', DetailQuizView.as_view(), name='quiz'),

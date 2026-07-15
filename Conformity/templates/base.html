@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-{% load tailwind_cli %}
+{% load tailwind_tags %}
+{% load django_htmx %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% tailwind_css %}
+    {% htmx_script %}
 </head>
 <body>
     {% include 'NavBar.html' %}

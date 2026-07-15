@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "tailwind",
+    'tailwind_poll',
     "django_htmx",
     'poll',
-    "django_tailwind_cli",
+    
 ]
+TAILWIND_APP_NAME = 'tailwind_poll'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

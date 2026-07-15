@@ -62,7 +62,7 @@ def show_questions(request, choice):
         if question["type"] == "BOTH" or question["type"] == choice or choice == "BOTH":
             questions_choice.append(question)
     context = {"questions":questions_choice}
-    return render(request, "show_questions.html", {'context': context, 'detail_choice' : detail_choice, 'choice':choice})
+    return render(request, "show_question.html", {'context': context, 'detail_choice' : detail_choice, 'choice':choice})
 
 
 

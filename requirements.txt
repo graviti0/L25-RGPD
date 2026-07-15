@@ -1,3 +1,3 @@
 django_htmx
 Django
-django_tailwind_cli
+django-tailwind

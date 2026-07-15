@@ -2,27 +2,16 @@
 
 {% block content %}
 <div class="min-h-screen">
+
     <div class='bg-blue-100 min-h-[50vh] flex justify-center items-center'>
-    <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 gap-1">
-        <button type="button"
-                class="rounded-md px-4 py-2 text-sm font-medium text-gray-600
-                    hover:bg-white hover:text-gray-900 transition-colors
-                    focus-visible:ring-2 focus-visible:ring-blue-400">
-        RGPD
-        </button>
-        <button type="button"
-                class="rounded-md px-4 py-2 text-sm font-medium text-gray-600
-                    hover:bg-white hover:text-gray-900 transition-colors
-                    focus-visible:ring-2 focus-visible:ring-blue-400">
-        Loi 25
-        </button>
-        <button type="button"
-                class="rounded-md px-4 py-2 text-sm font-medium text-gray-600
-                    hover:bg-white hover:text-gray-900 transition-colors
-                    focus-visible:ring-2 focus-visible:ring-blue-400">
-        Les deux
-        </button>
-    </div>
+        <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 gap-1">
+            <form method="POST" action="{% url 'quiz-create' %}" class="flex gap-2">
+                {% csrf_token %}
+                <button type="submit" name="choice" value="RGPD" class="rounded-md px-4 py-2 ...">RGPD</button>
+                <button type="submit" name="choice" value="L25" class="rounded-md px-4 py-2 ...">Loi 25</button>
+                <button type="submit" name="choice" value="Both" class="rounded-md px-4 py-2 ...">Les deux</button>
+            </form>
+        </div>
     </div>
     <div class="bg-red-100 min-h-[50vh]">
 

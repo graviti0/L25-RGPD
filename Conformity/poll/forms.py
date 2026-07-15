@@ -1,10 +1,6 @@
 from django.forms import ModelForm
-from .models import Quiz
+from .models import Quiz, Question, Choice
+from django.forms.models import inlineformset_factory
 
 
-
-class QuizForm(ModelForm):
-    class meta:
-        model = Quiz
-        fields = ['questions.text', 'question.reponse', 'question.reponse_choice']
-
+QuizForm = inlineformset_factory(Quiz, Question, fields=["text"], extra=3)

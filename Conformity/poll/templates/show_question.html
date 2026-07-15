@@ -1,0 +1,27 @@
+
+{% block content %}
+
+<div>{% if choice == 'RGPD' %}
+    <h3>Vous avez choisi la conformité au RGPD Européen</h3>
+    <p>{{detail_choice}}</p>
+    {% elif choice == 'L25' %}
+    <h3>Vous avez choisi la conformité à la Loi 25 Québecoise</h3>
+    <p>{{detail_choice}}</p>
+    {% elif choice == 'BOTH' %}
+    <h3>Vous avez choisi la conformité au RGPD Européen et à la Loi 25 Québecoise</h3>
+    <p>{{detail_choice}}</p>
+    {% endif %}
+</div>
+
+<div>
+    {% for question in context.question %}
+        <p>{{question.text}}</p> 
+        {% for cle, reponse in question.reponse.items %} 
+            <button>{{reponse}}</button>  
+        {% endfor %}
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

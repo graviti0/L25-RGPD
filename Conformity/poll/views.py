@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.generic.edit import FormView
 from django.views import View
+from django.views.generic.edit import CreateView
 from .forms import QuizForm
 from django.shortcuts import render
 from .models import Quiz, Question, Choice
@@ -12,7 +13,7 @@ from .forms import QuizForm
 from django.db import IntegrityError
 
 
-
+@require_http_methods(["GET"])
 def landing_page(request):
     return render(request, "landing_page.html")
 
@@ -38,7 +39,7 @@ questions = {
     },
     3:{
         'text':"Est-ce que votre organisme a une Délégué à la protection des données ?",
-        'type':'Both',
+        'type':'BOTH',
         'reponse':{
             1:"Oui",
             2:"Non",
@@ -46,19 +47,35 @@ questions = {
     },
     
 }
+description_choice = {"RGPD" : "LALALALALAL",
+                      "L25" : "LILILILILI",
+                      "BOTH" : "LOLOLOLOLOLO"}
 
 
-class CreateQuizView(View):
+@require_http_methods(["GET"])
+def show_questions(request, choice):
+    detail_choice = description_choice.get(choice)
+    if not detail_choice:
+        raise Http404('Erreur dans le choix')
+    questions_choice = []
+    for question in questions.values():
+        if question["type"] == "BOTH" or question["type"] == choice or choice == "BOTH":
+            questions_choice.append(question)
+    context = {"questions":questions_choice}
+    return render(request, "show_questions.html", {'context': context, 'detail_choice' : detail_choice, 'choice':choice})
 
-    def post(self, request):
-        list_choice = ["RGPD", "L25", "Both"]
-        choice = self.request.POST.get('choice')
-        
-        if not choice in list_choice:
-            raise Http404("Ce choix de réglement juridique n'existe pas") 
-        
+
+
+class CreateQuizView(CreateView):
+    model = Quiz
+    form = QuizForm
+    success_url='quiz'
+
+    def form_valid(self, form):
+        self.object = form.save()
+        choice = form.cleaned_data.get('choice')
         with transaction.atomic():
-            quiz = Quiz.objects.create()
+            quiz = self.object
             to_create = []
             question_number = 1
             for q in questions.values():
@@ -66,7 +83,7 @@ class CreateQuizView(View):
                     question_obj = Question(text=q["text"], quiz=quiz, number=question_number)
                     reponses = list(q["reponse"].values())
                     to_create.append((question_obj, reponses))
-                    question_number+=1  
+                    question_number += 1
             print(to_create)
             Question.objects.bulk_create([question_obj for question_obj, reponse in to_create])
             choice_bulk = []
@@ -74,11 +91,11 @@ class CreateQuizView(View):
                 count = 0
                 for text in reponses:
                     choice_bulk.append(Choice(
-                        question=question_obj,  
+                        question=question_obj,
                         choice_text=text,
                         votes=count,
                     ))
-                    count+=1
+                    count += 1
             Choice.objects.bulk_create(choice_bulk)
         return HttpResponseRedirect(reverse("quiz", args=[quiz.pk]))
     

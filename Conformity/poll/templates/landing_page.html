@@ -5,15 +5,22 @@
 
     <div class='bg-blue-100 min-h-[50vh] flex justify-center items-center'>
         <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 gap-1">
-            <form method="POST" action="{% url 'quiz-create' %}" class="flex gap-2">
-                {% csrf_token %}
+            {% comment %} <form method="POST" action="{% url 'quiz-create' %}" class="flex gap-2">
                 <button type="submit" name="choice" value="RGPD" class="rounded-md px-4 py-2 ...">RGPD</button>
                 <button type="submit" name="choice" value="L25" class="rounded-md px-4 py-2 ...">Loi 25</button>
                 <button type="submit" name="choice" value="Both" class="rounded-md px-4 py-2 ...">Les deux</button>
+            </form> {% endcomment %}
+            <form method="GET" class="flex gap-2">
+                <button type="button" hx-GET="{% url 'quiz-show' choice='RGPD' %}" hx-swap='innerHTML' hx-target='#question-container'
+                name="choice" value="RGPD" class="rounded-md px-4 py-2 ...">RGPD</button>
+                <button type="button" hx-GET="{% url 'quiz-show' choice='L25' %}" hx-swap='innerHTML' hx-target='#question-container'
+                name="choice" value="L25" class="rounded-md px-4 py-2 ...">Loi 25</button>
+                <button type="button" hx-GET="{% url 'quiz-show' choice='BOTH' %}" hx-swap='innerHTML' hx-target='#question-container'
+                 hx-trigger="click" name="choice" value="BOTH" class="rounded-md px-4 py-2 ...">Les deux</button>
             </form>
         </div>
     </div>
-    <div class="bg-red-100 min-h-[50vh]">
+    <div class="bg-red-100 min-h-[50vh]" id='question-container'>
 
 
     </div>

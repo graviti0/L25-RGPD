@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from poll.views import landing_page, CreateQuizView, DetailQuizView
+from poll.views import landing_page, CreateQuizView, DetailQuizView, show_questions
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing_page),
+    path('quiz/show/<str:choice>', show_questions, name='show-questions'),
     path('quiz/create/', CreateQuizView.as_view(), name='quiz-create'),
     path('quiz/<int:pk>/', DetailQuizView.as_view(), name='quiz'),
 

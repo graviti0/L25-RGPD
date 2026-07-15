@@ -3,4 +3,10 @@ from .models import Quiz, Question, Choice
 from django.forms.models import inlineformset_factory
 
 
-QuizForm = inlineformset_factory(Quiz, Question, fields=["text"], extra=3)
+
+class QuizForm(ModelForm):
+    class Meta:
+        model = Quiz
+        fields = (
+            'choice',
+        )

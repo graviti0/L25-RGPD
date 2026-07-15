@@ -5,7 +5,13 @@ from datetime import timedelta
 
 
 class Quiz(models.Model):
+    class QuizChoice(models.TextChoices):
+        RGPD = "RGPD", 'rgpd'
+        L25 = "L25", 'Loi 25'
+        BOTH = "BOTH", "both"
+    
     id = models.AutoField(primary_key=True)
+    choice = models.CharField(default=None, blank=True, null=True, choices=QuizChoice)
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateField(blank=True, null=True)
     is_over = models.BooleanField(default=False)

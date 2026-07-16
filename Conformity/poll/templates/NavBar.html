@@ -1,16 +1,17 @@
-<nav class="w-full bg-white border-b border-gray-200 ">
-  <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-14 items-center gap-4">
-      <!-- SVG placeholder -->
-        <div class="flex shrink-0 items-center">
-          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
-        </div>
-      <!-- Bouton Accueil -->
-      <a method='GET' action='{% url "accueil" %}'
-         class="rounded-md cursor-pointer px-3 py-2 text-sm font-medium text-gray-700
-                hover:bg-gray-100 hover:text-gray-900 transition-colors">
-        Accueil
-      </a>
+
+
+  <header class="flex items-center gap-4 border-b-2 border-dashed border-neutral-400 px-8 py-4 bg-cream">
+    <div class="flex items-center gap-3">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M17 3.5l12 4.2v8.6c0 7.6-5 14.4-12 16.9C10 30.7 5 23.9 5 16.3V7.7l12-4.2z" fill="#bcd8ff" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M11.5 17l3.8 3.8L23 12" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="font-display text-2xl font-bold font-gaegu">Conformity</span>
     </div>
-  </div>
-</nav>
+    <nav class="ml-8 flex gap-6 font-display text-base font-bold">
+      <a method='GET' action='{% url "accueil" %}' class="border-b-[3px] border-accent pb-px text-ink no-underline font-gaegu">Accueil</a>
+      <a href="#" class="text-ink no-underline opacity-70 hover:opacity-100 font-gaegu">Documentation</a>
+      <a href="#" class="text-ink no-underline opacity-70 hover:opacity-100 font-gaegu">Résultats</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-4">
+      <span class="font-display text-[15px] font-bold opacity-70 font-gaegu">FR ▾</span>
+      <a href="#quiz" class="inline-flex cursor-pointer items-center gap-2 rounded-[10px] border-2 border-ink bg-sky px-4 py-2 font-display text-[15px] font-bold shadow-sketch-sm no-underline text-ink font-gaegu">Faire le quiz →</a>
+    </div>
+  </header>

@@ -2,11 +2,229 @@
 
 {% block content %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Envoyer résultats</button>
-</form>
+<main class="mx-auto my-10 w-[760px] max-w-full overflow-hidden rounded-2xl border-[2.5px] border-ink bg-cream shadow-[7px_9px_0_rgba(26,26,26,.16)]">
+
+  <!-- Navbar -->
+  <header class="flex items-center gap-4 border-b-2 border-dashed border-neutral-400 px-8 py-4">
+    <div class="flex items-center gap-3">
+      <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><path d="M17 3.5l12 4.2v8.6c0 7.6-5 14.4-12 16.9C10 30.7 5 23.9 5 16.3V7.7l12-4.2z" fill="#bcd8ff" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M11.5 17l3.8 3.8L23 12" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="font-display text-xl font-bold">Confidentia</span>
+    </div>
+    <a href="accueil.html" class="ml-auto cursor-pointer font-display text-[15px] font-bold no-underline text-ink opacity-60 hover:opacity-100">✕ Quitter</a>
+  </header>
+
+
+  <section id="view-intro" class="mx-auto max-w-[560px] px-10 py-14 text-center">
+    <span class="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-amberlite px-3.5 py-1.5 font-display text-sm font-bold">⚡ Autoévaluation gratuite · 5 min</span>
+    <h1 class="my-4 font-display text-[40px] font-bold leading-[1.08]">Voulez-vous débuter le quiz ?</h1>
+    <p class="mx-auto mb-8 max-w-[420px] text-[18px] leading-relaxed text-neutral-600">Évaluez la conformité de votre organisation. Répondez à une série de questions, obtenez un score et des recommandations concrètes.</p>
+
+    <!-- Cadre choice -->
+    <div class="mb-3 font-display text-[13px] font-bold uppercase tracking-wide text-accent">Choisissez le cadre à évaluer</div>
+    <div class="mb-8 grid gap-3 sm:grid-cols-3" id="frame-choice">
+      <button id='filter-choice' data-frame="RGPD" class="frame cursor-pointer rounded-2xl border-2 border-ink bg-white p-4 text-left font-display shadow-sketch-sm transition">
+        <div class="text-[19px] font-bold">🇪🇺 RGPD</div>
+        <p class="mt-1 font-body text-[14px] leading-snug text-neutral-500">Europe</p>
+      </button>
+      <button id='filter-choice' data-frame="L25" class="frame cursor-pointer rounded-2xl border-2 border-ink bg-white p-4 text-left font-display shadow-sketch-sm transition">
+        <div class="text-[19px] font-bold">⚜️ Loi 25</div>
+        <p class="mt-1 font-body text-[14px] leading-snug text-neutral-500">Québec</p>
+      </button>
+      <button id='filter-choice' data-frame="BOTH" class="frame cursor-pointer rounded-2xl border-2 border-accent bg-skylite p-4 text-left font-display shadow-sketch-accent transition">
+        <div class="text-[19px] font-bold">Les deux</div>
+        <p class="mt-1 font-body text-[14px] leading-snug text-neutral-500">RGPD + Loi 25</p>
+      </button>
+    </div>
+
+    <button hx-get="{% url 'questions' %}" hx-include="#filter-choice" hx-target="#view-intro" hx-trigger="click" hx-swap="outerHTML" id="start-btn" class="inline-flex cursor-pointer items-center gap-2.5 rounded-[13px] border-[2.5px] border-ink bg-amber px-8 py-4 font-display text-xl font-bold text-ink shadow-[4px_4px_0_rgba(26,26,26,.25)]">Commencer le quiz →</button>
+
+    <!-- Resume banner (hidden unless saved progress) -->
+    <div id="resume" class="mx-auto mt-6 hidden max-w-[440px] items-center gap-3 rounded-xl border-2 border-ink bg-amberlite px-4 py-3 text-left shadow-sketch-sm">
+      <span class="text-2xl">💾</span>
+      <div class="flex-1">
+        <div class="font-display text-[15px] font-bold">Reprendre là où vous en étiez ?</div>
+        <p class="font-body text-[13px] text-neutral-500" id="resume-info">Progression sauvegardée trouvée.</p>
+      </div>
+      <button id="resume-btn" class="cursor-pointer rounded-[10px] border-2 border-ink bg-sky px-3.5 py-2 font-display text-[14px] font-bold shadow-sketch-sm">Reprendre →</button>
+    </div>
+
+    <div class="mt-8 flex items-center justify-center gap-5 font-display text-[15px] font-bold text-neutral-500">
+      <span>✓ Sans inscription</span><span>✓ Anonyme</span><span>✓ Résultat immédiat</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="flex border-t-2 border-dashed border-neutral-400 px-8 py-3.5 font-display text-[14px] font-bold text-neutral-500">
+    <span>💾 Progression non sauvegardée</span>
+  </footer>
+</main>
+
+<script>
+  // ---- Question bank (per frame) ----
+  const BANK = {
+    rgpd: [
+      { q: "Tenez-vous un registre des activités de traitement de données ?", hint: "Une seule réponse — art. 30 du RGPD",
+        opts: ["Oui, à jour et complet", "Oui, mais incomplet", "Non", "Je ne sais pas"] },
+      { q: "Recueillez-vous un consentement explicite avant de collecter des données ?", hint: "Une seule réponse — art. 6 & 7",
+        opts: ["Toujours", "Parfois", "Jamais", "Je ne sais pas"] },
+      { q: "Avez-vous désigné un délégué à la protection des données (DPO) ?", hint: "Une seule réponse — art. 37",
+        opts: ["Oui", "Non, mais pas requis", "Non", "Je ne sais pas"] },
+      { q: "Notifiez-vous les violations de données à la CNIL sous 72 h ?", hint: "Une seule réponse — art. 33",
+        opts: ["Oui, procédure en place", "En théorie seulement", "Non", "Je ne sais pas"] },
+      { q: "Vos sous-traitants sont-ils encadrés par un contrat conforme ?", hint: "Une seule réponse — art. 28",
+        opts: ["Oui, tous", "Certains", "Non", "Je ne sais pas"] },
+    ],
+    loi25: [
+      { q: "Avez-vous nommé un responsable de la protection des renseignements personnels ?", hint: "Une seule réponse — Loi 25",
+        opts: ["Oui", "Non, mais prévu", "Non", "Je ne sais pas"] },
+      { q: "Publiez-vous vos politiques de gouvernance des renseignements ?", hint: "Une seule réponse — Loi 25",
+        opts: ["Oui, en ligne", "En interne seulement", "Non", "Je ne sais pas"] },
+      { q: "Réalisez-vous une EFVP pour les projets à risque ?", hint: "Évaluation des facteurs relatifs à la vie privée",
+        opts: ["Systématiquement", "Parfois", "Jamais", "Je ne sais pas"] },
+      { q: "Déclarez-vous les incidents de confidentialité à la CAI ?", hint: "Commission d'accès à l'information",
+        opts: ["Oui, procédure en place", "En théorie", "Non", "Je ne sais pas"] },
+      { q: "Obtenez-vous un consentement clair pour les témoins (cookies) ?", hint: "Une seule réponse — Loi 25",
+        opts: ["Oui", "Partiellement", "Non", "Je ne sais pas"] },
+    ],
+  };
+
+  const FRAME_LABEL = { rgpd: "RGPD", loi25: "Loi 25", both: "RGPD + Loi 25" };
+
+  let frame = "both";
+  let questions = [];
+  let answers = {};     // index -> option index
+  let current = 0;
+
+  function buildQuestions(f) {
+    if (f === "rgpd") return BANK.rgpd.map(x => ({ ...x, frame: "RGPD" }));
+    if (f === "loi25") return BANK.loi25.map(x => ({ ...x, frame: "Loi 25" }));
+    return [...BANK.rgpd.map(x => ({ ...x, frame: "RGPD" })), ...BANK.loi25.map(x => ({ ...x, frame: "Loi 25" }))];
+  }
+
+  // ---- Frame selection on intro ----
+  const frameBtns = document.querySelectorAll('.frame');
+  function selectFrame(f) {
+    frame = f;
+    frameBtns.forEach(b => {
+      const on = b.dataset.frame === f;
+      b.classList.toggle('border-accent', on);
+      b.classList.toggle('bg-skylite', on);
+      b.classList.toggle('shadow-sketch-accent', on);
+      b.classList.toggle('border-ink', !on);
+      b.classList.toggle('bg-white', !on);
+      b.classList.toggle('shadow-sketch-sm', !on);
+    });
+  }
+  frameBtns.forEach(b => b.addEventListener('click', () => selectFrame(b.dataset.frame)));
+
+  // ---- Persistence ----
+  const KEY = 'confidentia-quiz';
+  function save() {
+    localStorage.setItem(KEY, JSON.stringify({ frame, answers, current }));
+  }
+  function loadSaved() {
+    try { return JSON.parse(localStorage.getItem(KEY)); } catch { return null; }
+  }
+
+  // ---- Start / resume ----
+  function startQuiz(resume) {
+    const saved = resume ? loadSaved() : null;
+    if (saved) { frame = saved.frame; answers = saved.answers || {}; current = saved.current || 0; }
+    else { answers = {}; current = 0; }
+    questions = buildQuestions(frame);
+    document.getElementById('view-intro').classList.add('hidden');
+    const qv = document.getElementById('view-quiz');
+    qv.classList.remove('hidden');
+    qv.classList.add('animate-hirise');
+    render();
+  }
+  document.getElementById('start-btn').addEventListener('click', () => startQuiz(false));
+  document.getElementById('resume-btn').addEventListener('click', () => startQuiz(true));
+
+  // Show resume banner if prior progress exists
+  (function initResume() {
+    const saved = loadSaved();
+    if (saved && Object.keys(saved.answers || {}).length) {
+      selectFrame(saved.frame || 'both');
+      const total = buildQuestions(saved.frame || 'both').length;
+      document.getElementById('resume-info').textContent =
+        `${Object.keys(saved.answers).length} / ${total} répondues · cadre ${FRAME_LABEL[saved.frame] || ''}`;
+      document.getElementById('resume').classList.remove('hidden');
+      document.getElementById('resume').classList.add('flex');
+    } else {
+      selectFrame('both');
+    }
+  })();
+
+  // ---- Render current question ----
+  const optWrap = document.getElementById('q-options');
+  function render() {
+    const total = questions.length;
+    const item = questions[current];
+    document.getElementById('q-counter').textContent = `Question ${current + 1} / ${total}`;
+    document.getElementById('q-frame').textContent = `Cadre : ${item.frame}`;
+    document.getElementById('q-title').textContent = item.q;
+    document.getElementById('q-hint').textContent = item.hint;
+
+    // options
+    optWrap.innerHTML = '';
+    item.opts.forEach((label, i) => {
+      const sel = answers[current] === i;
+      const row = document.createElement('button');
+      row.className = "flex items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition " +
+        (sel ? "border-accent bg-skylite shadow-sketch-accent" : "border-ink bg-white hover:bg-neutral-50");
+      row.innerHTML =
+        `<span class="h-4 w-4 flex-none rounded-full border-2 border-ink ${sel ? 'bg-accent' : ''}"></span>` +
+        `<span class="font-display text-[17px] font-bold">${label}</span>`;
+      row.addEventListener('click', () => { answers[current] = i; save(); render(); });
+      optWrap.appendChild(row);
+    });
+
+    // progress
+    const answered = Object.keys(answers).length;
+    const pct = Math.round(((current + 1) / total) * 100);
+    document.getElementById('bar-done').style.flex = current + 1;
+    document.getElementById('bar-rest').style.flex = total - (current + 1);
+    document.getElementById('prog-answered').textContent = `${answered} répondue${answered > 1 ? 's' : ''}`;
+    document.getElementById('prog-pct').textContent = `${pct} % du quiz`;
+
+    // nav buttons
+    document.getElementById('prev-btn').disabled = current === 0;
+    const next = document.getElementById('next-btn');
+    next.textContent = current === total - 1 ? 'Terminer ✓' : 'Suivante →';
+
+    buildList();
+    save();
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => { if (current > 0) { current--; render(); } });
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (current < questions.length - 1) { current++; render(); }
+    else { alert('Quiz terminé ! (La page Résultats affichera votre score.)'); }
+  });
+
+  // ---- Jump list ----
+  const listBtn = document.getElementById('list-btn');
+  const listMenu = document.getElementById('list-menu');
+  listBtn.addEventListener('click', () => listMenu.classList.toggle('hidden'));
+  document.addEventListener('click', e => {
+    if (!listBtn.contains(e.target) && !listMenu.contains(e.target)) listMenu.classList.add('hidden');
+  });
+  function buildList() {
+    const grid = document.getElementById('list-grid');
+    grid.innerHTML = '';
+    questions.forEach((_, i) => {
+      const b = document.createElement('button');
+      const done = answers[i] !== undefined;
+      const here = i === current;
+      b.textContent = i + 1;
+      b.className = "h-8 w-8 rounded-lg border-2 border-ink font-display text-[13px] font-bold " +
+        (here ? "bg-amber" : done ? "bg-sky" : "bg-white");
+      b.addEventListener('click', () => { current = i; listMenu.classList.add('hidden'); render(); });
+      grid.appendChild(b);
+    });
+  }
+</script>
 
 
 

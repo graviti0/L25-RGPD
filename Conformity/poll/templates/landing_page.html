@@ -8,8 +8,14 @@
         <h1 class="my-4 font-display text-[52px] font-bold leading-[1.04]">La protection des données <span class="text-accent underline decoration-wavy decoration-2 underline-offset-[5px]">sans prise de tête</span>.</h1>
         <p class="mb-6 max-w-[430px] text-[19px] leading-relaxed text-neutral-600">Comprenez vos obligations — RGPD en Europe, Loi 25 au Québec — et évaluez la conformité de votre organisation en 5 minutes.</p>
         <div class="flex flex-wrap gap-3.5">
-          <a method='GET' action='{% url "quiz" %}' class="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-ink bg-sky px-6 py-3 font-display text-[17px] font-bold shadow-sketch no-underline text-ink">Faire le quiz →</a>
-          <a method='GET' action='{% url "documentation" %}' class="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-ink bg-white px-6 py-3 font-display text-[17px] font-bold no-underline text-ink">Documentation</a>
+          <a href="{% url 'quiz' %}"
+            class="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-ink bg-sky px-6 py-3 font-display text-[17px] font-bold shadow-sketch no-underline text-ink">
+            Faire le quiz →
+          </a>
+          <a href="{% url 'documentation' %}"
+            class="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-ink bg-white px-6 py-3 font-display text-[17px] font-bold no-underline text-ink">
+            Documentation
+          </a>
         </div>
         <div class="mt-5 flex items-center gap-5 font-display text-[15px] font-bold text-neutral-600">
           <span>✓ Sans inscription</span><span>✓ Résultat immédiat</span>
@@ -121,11 +127,8 @@
   </section>
 
   <!-- Footer -->
-  <footer class="flex flex-wrap items-center gap-[22px] border-t-2 border-dashed border-neutral-400 px-10 py-6 font-display text-[15px] font-bold text-neutral-500 bg-cream">
-    <span class="text-lg text-ink">Confidentia</span>
-    <span>À propos</span><span>Mentions légales</span><span>Documentation</span>
-    <span class="ml-auto">🔒 Données anonymisées · CNIL / CAI</span>
-  </footer>
+ {% include 'components/Footer.html' %}
+
 </main>
 
 

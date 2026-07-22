@@ -1,0 +1,288 @@
+      
+      
+{% if choice == 'RGPD' %}
+      <!-- Sommaire -->
+      <aside class="rounded-xl border-2 border-ink bg-white p-5 shadow-sketch-card md:sticky md:top-6">
+        <div class="mb-3 font-display text-[13px] font-bold uppercase tracking-wide text-accent">Sommaire</div>
+        <nav class="flex flex-col gap-3 font-display text-[15px] font-bold" id="toc">
+          <a href="#s-def" class="toc-link text-ink no-underline">1. Définition &amp; principes</a>
+          <a href="#s-data" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">2. Données personnelles</a>
+          <a href="#s-droits" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">3. Vos droits</a>
+          <a href="#s-obli" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">4. Obligations</a>
+          <a href="#s-sanc" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">5. Sanctions</a>
+          <a href="#s-cas" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">6. Cas pratiques</a>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div>
+        <!-- RGPD panel -->
+        <div data-panel="rgpd" class="panel flex flex-col gap-8">
+          <section id="s-def" class="scroll-mt-6">
+            <span class="font-display text-[13px] font-bold uppercase tracking-wide text-accent">🇪🇺 Europe</span>
+            <h2 class="mb-2.5 mt-1.5 font-display text-[28px] font-bold">Qu'est-ce que le RGPD ?</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Le Règlement général sur la protection des données encadre le traitement des données personnelles des résidents de l'Union européenne. Il s'applique à toute organisation qui collecte ou traite ces données, où qu'elle soit dans le monde.</p>
+            <p class="mb-4 text-base leading-relaxed text-neutral-700">Il repose sur des principes clés : licéité, minimisation des données, limitation de la conservation, sécurité et responsabilité (<em>accountability</em>).</p>
+            <div class="rounded-xl border-2 border-ink bg-amberlite p-4 shadow-sketch-card">
+              <div class="mb-1 font-display text-[15px] font-bold">💡 À retenir</div>
+              <p class="text-[15px] leading-snug text-neutral-700">Le RGPD (Europe) et la Loi 25 (Québec) partagent la même philosophie : redonner aux personnes le contrôle de leurs données.</p>
+            </div>
+          </section>
+
+          <section id="s-data" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">2. Données personnelles</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Toute information se rapportant à une personne physique identifiée ou identifiable : nom, e-mail, adresse IP, identifiant en ligne, données de localisation. Certaines catégories dites « sensibles » (santé, opinions, biométrie) bénéficient d'une protection renforcée.</p>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><div class="mb-1.5 font-display font-bold">Données courantes</div><p class="text-[15px] leading-relaxed text-neutral-600">Nom, coordonnées, historique d'achat, cookies.</p></div>
+              <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><div class="mb-1.5 font-display font-bold">Données sensibles</div><p class="text-[15px] leading-relaxed text-neutral-600">Santé, religion, orientation, données biométriques.</p></div>
+            </div>
+          </section>
+
+          <section id="s-droits" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">3. Vos droits</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Articles 15 à 22 : droit d'accès, de rectification, à l'effacement (« droit à l'oubli »), à la portabilité, à la limitation et d'opposition. Une organisation doit répondre à une demande sous un mois.</p>
+            <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><ul class="ml-5 list-disc space-y-1.5 text-[15px] leading-relaxed text-neutral-700"><li>Accès à vos données</li><li>Rectification des données inexactes</li><li>Effacement et opposition</li><li>Portabilité vers un autre service</li></ul></div>
+          </section>
+
+          <section id="s-obli" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">4. Obligations</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Registre des traitements, consentement explicite, désignation d'un DPO le cas échéant, analyse d'impact (AIPD) pour les traitements à risque, et notification des violations à la CNIL sous 72 heures.</p>
+          </section>
+
+          <section id="s-sanc" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">5. Sanctions</h2>
+            <p class="text-base leading-relaxed text-neutral-700">En cas de non-conformité, la CNIL peut prononcer des amendes administratives jusqu'à <strong>20 M€</strong> ou <strong>4 % du chiffre d'affaires mondial annuel</strong>, selon le montant le plus élevé.</p>
+          </section>
+
+          <section id="s-cas" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">6. Cas pratiques</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Formulaire de contact, newsletter, cookies analytiques, sous-traitance cloud : chaque traitement doit reposer sur une base légale et informer clairement la personne concernée.</p>
+          </section>
+        </div>
+
+        <!-- Loi 25 panel -->
+        <div data-panel="loi25" class="panel hidden flex-col gap-8">
+          <section class="scroll-mt-6">
+            <span class="font-display text-[13px] font-bold uppercase tracking-wide text-accent">⚜️ Québec</span>
+            <h2 class="mb-2.5 mt-1.5 font-display text-[28px] font-bold">Qu'est-ce que la Loi 25 ?</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">La Loi 25 modernise le régime québécois de protection des renseignements personnels, dans les secteurs privé et public. Déployée par étapes de 2022 à 2024, elle rapproche le Québec des standards du RGPD.</p>
+            <p class="mb-4 text-base leading-relaxed text-neutral-700">Elle impose transparence, consentement clair, et la nomination d'un responsable de la protection des renseignements personnels au sein de chaque organisation.</p>
+            <div class="rounded-xl border-2 border-ink bg-amberlite p-4 shadow-sketch-card">
+              <div class="mb-1 font-display text-[15px] font-bold">💡 À retenir</div>
+              <p class="text-[15px] leading-snug text-neutral-700">La Loi 25 introduit des droits proches du RGPD, dont la portabilité et la désindexation, applicables depuis 2024.</p>
+            </div>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">2. Renseignements personnels</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Tout renseignement qui concerne une personne physique et permet, directement ou indirectement, de l'identifier. La notion est volontairement large et couvre les renseignements sensibles, soumis à un consentement manifeste.</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">3. Vos droits</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Droits d'accès, de rectification et de retrait du consentement, auxquels s'ajoutent depuis 2024 le droit à la <strong>portabilité</strong> et le droit à la <strong>désindexation</strong> (cessation de diffusion d'un renseignement).</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">4. Obligations</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Responsable de la protection des renseignements, politiques de gouvernance publiées, évaluation des facteurs relatifs à la vie privée (EFVP), et déclaration des incidents de confidentialité à la Commission d'accès à l'information (CAI).</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">5. Sanctions</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Sanctions administratives pécuniaires jusqu'à <strong>10 M$ CA ou 2 %</strong> du chiffre d'affaires mondial, et amendes pénales jusqu'à <strong>25 M$ CA ou 4 %</strong> du chiffre d'affaires mondial.</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">6. Cas pratiques</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Consentement au dépôt de témoins (cookies), transferts de renseignements hors Québec, et communication d'un incident de confidentialité : autant de situations désormais encadrées par la Loi 25.</p>
+          </section>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-7 flex flex-wrap items-center gap-6 rounded-2xl border-[2.5px] border-ink bg-sky p-7 shadow-sketch-lg">
+          <div class="min-w-[240px] flex-1">
+            <div class="font-display text-2xl font-bold">Prêt à vous tester ?</div>
+            <p class="mt-1 text-[15px] text-slate-700">Évaluez votre conformité en 5 minutes.</p>
+          </div>
+          <a href="#" class="inline-flex cursor-pointer items-center gap-2.5 rounded-[13px] border-[2.5px] border-ink bg-amber px-7 py-3.5 font-display text-[17px] font-bold text-ink no-underline shadow-[4px_4px_0_rgba(26,26,26,.25)]">Faire le quiz →</a>
+        </div>
+      </div>
+
+{% elif choice == 'L25' %}
+      <!-- Sommaire -->
+      <aside class="rounded-xl border-2 border-ink bg-white p-5 shadow-sketch-card md:sticky md:top-6">
+        <div class="mb-3 font-display text-[13px] font-bold uppercase tracking-wide text-accent">Sommaire</div>
+        <nav class="flex flex-col gap-3 font-display text-[15px] font-bold" id="toc">
+          <a href="#s-def" class="toc-link text-ink no-underline">1. Définition &amp; principes</a>
+          <a href="#s-data" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">2. Données personnelles</a>
+          <a href="#s-droits" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">3. Vos droits</a>
+          <a href="#s-obli" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">4. Obligations</a>
+          <a href="#s-sanc" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">5. Sanctions</a>
+          <a href="#s-cas" class="toc-link text-ink no-underline opacity-70 hover:opacity-100">6. Cas pratiques</a>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div>
+        <!-- L25 panel -->
+        <div data-panel="rgpd" class="panel flex flex-col gap-8">
+          <section id="s-def" class="scroll-mt-6">
+            <span class="font-display text-[13px] font-bold uppercase tracking-wide text-accent">🇪🇺 Europe</span>
+            <h2 class="mb-2.5 mt-1.5 font-display text-[28px] font-bold">Qu'est-ce que la Loi 25 ?</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Le Règlement général sur la protection des données encadre le traitement des données personnelles des résidents de l'Union européenne. Il s'applique à toute organisation qui collecte ou traite ces données, où qu'elle soit dans le monde.</p>
+            <p class="mb-4 text-base leading-relaxed text-neutral-700">Il repose sur des principes clés : licéité, minimisation des données, limitation de la conservation, sécurité et responsabilité (<em>accountability</em>).</p>
+            <div class="rounded-xl border-2 border-ink bg-amberlite p-4 shadow-sketch-card">
+              <div class="mb-1 font-display text-[15px] font-bold">💡 À retenir</div>
+              <p class="text-[15px] leading-snug text-neutral-700">Le RGPD (Europe) et la Loi 25 (Québec) partagent la même philosophie : redonner aux personnes le contrôle de leurs données.</p>
+            </div>
+          </section>
+
+          <section id="s-data" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">2. Données personnelles</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Toute information se rapportant à une personne physique identifiée ou identifiable : nom, e-mail, adresse IP, identifiant en ligne, données de localisation. Certaines catégories dites « sensibles » (santé, opinions, biométrie) bénéficient d'une protection renforcée.</p>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><div class="mb-1.5 font-display font-bold">Données courantes</div><p class="text-[15px] leading-relaxed text-neutral-600">Nom, coordonnées, historique d'achat, cookies.</p></div>
+              <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><div class="mb-1.5 font-display font-bold">Données sensibles</div><p class="text-[15px] leading-relaxed text-neutral-600">Santé, religion, orientation, données biométriques.</p></div>
+            </div>
+          </section>
+
+          <section id="s-droits" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">3. Vos droits</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">Articles 15 à 22 : droit d'accès, de rectification, à l'effacement (« droit à l'oubli »), à la portabilité, à la limitation et d'opposition. Une organisation doit répondre à une demande sous un mois.</p>
+            <div class="rounded-xl border-2 border-ink bg-white p-4 shadow-sketch-card"><ul class="ml-5 list-disc space-y-1.5 text-[15px] leading-relaxed text-neutral-700"><li>Accès à vos données</li><li>Rectification des données inexactes</li><li>Effacement et opposition</li><li>Portabilité vers un autre service</li></ul></div>
+          </section>
+
+          <section id="s-obli" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">4. Obligations</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Registre des traitements, consentement explicite, désignation d'un DPO le cas échéant, analyse d'impact (AIPD) pour les traitements à risque, et notification des violations à la CNIL sous 72 heures.</p>
+          </section>
+
+          <section id="s-sanc" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">5. Sanctions</h2>
+            <p class="text-base leading-relaxed text-neutral-700">En cas de non-conformité, la CNIL peut prononcer des amendes administratives jusqu'à <strong>20 M€</strong> ou <strong>4 % du chiffre d'affaires mondial annuel</strong>, selon le montant le plus élevé.</p>
+          </section>
+
+          <section id="s-cas" class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">6. Cas pratiques</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Formulaire de contact, newsletter, cookies analytiques, sous-traitance cloud : chaque traitement doit reposer sur une base légale et informer clairement la personne concernée.</p>
+          </section>
+        </div>
+
+        <!-- Loi 25 panel -->
+        <div data-panel="loi25" class="panel hidden flex-col gap-8">
+          <section class="scroll-mt-6">
+            <span class="font-display text-[13px] font-bold uppercase tracking-wide text-accent">⚜️ Québec</span>
+            <h2 class="mb-2.5 mt-1.5 font-display text-[28px] font-bold">Qu'est-ce que la Loi 25 ?</h2>
+            <p class="mb-3.5 text-base leading-relaxed text-neutral-700">La Loi 25 modernise le régime québécois de protection des renseignements personnels, dans les secteurs privé et public. Déployée par étapes de 2022 à 2024, elle rapproche le Québec des standards du RGPD.</p>
+            <p class="mb-4 text-base leading-relaxed text-neutral-700">Elle impose transparence, consentement clair, et la nomination d'un responsable de la protection des renseignements personnels au sein de chaque organisation.</p>
+            <div class="rounded-xl border-2 border-ink bg-amberlite p-4 shadow-sketch-card">
+              <div class="mb-1 font-display text-[15px] font-bold">💡 À retenir</div>
+              <p class="text-[15px] leading-snug text-neutral-700">La Loi 25 introduit des droits proches du RGPD, dont la portabilité et la désindexation, applicables depuis 2024.</p>
+            </div>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">2. Renseignements personnels</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Tout renseignement qui concerne une personne physique et permet, directement ou indirectement, de l'identifier. La notion est volontairement large et couvre les renseignements sensibles, soumis à un consentement manifeste.</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">3. Vos droits</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Droits d'accès, de rectification et de retrait du consentement, auxquels s'ajoutent depuis 2024 le droit à la <strong>portabilité</strong> et le droit à la <strong>désindexation</strong> (cessation de diffusion d'un renseignement).</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">4. Obligations</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Responsable de la protection des renseignements, politiques de gouvernance publiées, évaluation des facteurs relatifs à la vie privée (EFVP), et déclaration des incidents de confidentialité à la Commission d'accès à l'information (CAI).</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">5. Sanctions</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Sanctions administratives pécuniaires jusqu'à <strong>10 M$ CA ou 2 %</strong> du chiffre d'affaires mondial, et amendes pénales jusqu'à <strong>25 M$ CA ou 4 %</strong> du chiffre d'affaires mondial.</p>
+          </section>
+
+          <section class="scroll-mt-6">
+            <h2 class="mb-2.5 font-display text-[24px] font-bold">6. Cas pratiques</h2>
+            <p class="text-base leading-relaxed text-neutral-700">Consentement au dépôt de témoins (cookies), transferts de renseignements hors Québec, et communication d'un incident de confidentialité : autant de situations désormais encadrées par la Loi 25.</p>
+          </section>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-7 flex flex-wrap items-center gap-6 rounded-2xl border-[2.5px] border-ink bg-sky p-7 shadow-sketch-lg">
+          <div class="min-w-[240px] flex-1">
+            <div class="font-display text-2xl font-bold">Prêt à vous tester ?</div>
+            <p class="mt-1 text-[15px] text-slate-700">Évaluez votre conformité en 5 minutes.</p>
+          </div>
+          <a href="#" class="inline-flex cursor-pointer items-center gap-2.5 rounded-[13px] border-[2.5px] border-ink bg-amber px-7 py-3.5 font-display text-[17px] font-bold text-ink no-underline shadow-[4px_4px_0_rgba(26,26,26,.25)]">Faire le quiz →</a>
+        </div>
+      </div>
+
+{% else %}
+
+<p class="mt-1 text-[15px] text-slate-700">Erreur</p>
+
+{% endif %}
+
+<script>
+  const tocLinks = Array.from(document.querySelectorAll('#toc .toc-link'));
+
+  // Applique l'état actif au lien d'index donné, désactive les autres
+  function activate(index) {
+    tocLinks.forEach((link, i) => {
+      const actif = i === index;
+      link.classList.toggle('text-accent', actif);   // couleur active
+      link.classList.toggle('text-ink', !actif);     // couleur normale
+      link.classList.toggle('opacity-70', !actif);   // atténuation des inactifs
+    });
+  }
+
+  // Retourne le panneau actuellement visible (celui sans .hidden)
+  function panneauVisible() {
+    return Array.from(document.querySelectorAll('.panel'))
+                .find(p => !p.classList.contains('hidden'));
+  }
+
+  let observer;
+
+  // (Re)configure l'observer sur les sections du panneau visible
+  function setupObserver() {
+    if (observer) observer.disconnect();          // repart de zéro à chaque bascule
+    const panel = panneauVisible();
+    if (!panel) return;
+
+    const sections = Array.from(panel.querySelectorAll('section'));
+
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = sections.indexOf(entry.target);
+          if (index !== -1) activate(index);
+        }
+      });
+    }, {
+      rootMargin: '-30% 0px -60% 0px',  // bande de détection vers le haut de l'écran
+      threshold: 0,
+    });
+
+    sections.forEach(s => observer.observe(s));
+  }
+
+  // Clic sur un lien → défile vers la section correspondante DU PANNEAU VISIBLE
+  tocLinks.forEach((link, i) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const panel = panneauVisible();
+      panel?.querySelectorAll('section')[i]?.scrollIntoView({
+        behavior: 'smooth', block: 'start',
+      });
+    });
+  });
+
+  // Re-configure l'observer quand un panneau est affiché/masqué (toggle de .hidden)
+  const watcher = new MutationObserver(() => setupObserver());
+  document.querySelectorAll('.panel').forEach(p =>
+    watcher.observe(p, { attributes: true, attributeFilter: ['class'] }));
+
+  setupObserver();  // premier lancement
+</script>

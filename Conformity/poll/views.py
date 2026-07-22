@@ -62,7 +62,8 @@ description_choice = {"RGPD" : "LALALALALAL",
 
 
 @require_http_methods(["GET"])
-def show_questions(request, choice):
+def show_questions(request):
+    choice = request.GET.get('choice', 'BOTH')
     detail_choice = description_choice.get(choice)
     if not detail_choice:
         raise Http404('Erreur dans le choix')
@@ -71,7 +72,12 @@ def show_questions(request, choice):
         if question["type"] == "BOTH" or question["type"] == choice or choice == "BOTH":
             questions_choice.append(question)
     context = {"questions":questions_choice}
-    return render(request, "quiz.html", {'context': context, 'detail_choice' : detail_choice, 'choice':choice})
+    return render(request, "show_questions.html", {'context': context, 'detail_choice' : detail_choice, 'choice':choice})
+
+
+@require_http_methods(["GET"])
+def documentation_choice(request, choice):
+    return render(request, "components/DocumentationChoice.html", {'choice': choice})
 
 
 

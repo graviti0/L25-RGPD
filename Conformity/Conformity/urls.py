@@ -16,14 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from poll.views import landing_page, CreateQuizView, DetailQuizView, show_questions, documentation, show_quiz
+from poll.views import landing_page, CreateQuizView, DetailQuizView, show_questions, documentation, show_quiz, documentation_choice
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing_page, name='accueil'),
     path('documentation/', documentation, name='documentation'),
+    path('documentation/<str:choice>', documentation_choice, name='documentation_choice'),
     path('quiz/', show_quiz, name='quiz'),
-    path('quiz/show/<str:choice>', show_questions, name='questions'),
+    path('quiz/questions', show_questions, name='questions'),
     path('quiz/create/', CreateQuizView.as_view(), name='quiz-create'),
     path('quiz/<int:pk>/', DetailQuizView.as_view(), name='quiz-detail'),
 

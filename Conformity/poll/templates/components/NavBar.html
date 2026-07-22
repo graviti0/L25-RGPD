@@ -6,9 +6,11 @@
       <span class="font-display text-2xl font-bold font-gaegu">Conformity</span>
     </div>
     <nav class="ml-8 flex gap-6 font-display text-base font-bold">
-      <a method='GET' action='{% url "accueil" %}' class="border-b-[3px] border-accent pb-px text-ink no-underline font-gaegu">Accueil</a>
-      <a method='GET' action='{% url "documentation" %}' class="text-ink no-underline opacity-70 hover:opacity-100 font-gaegu">Documentation</a>
+      {% with current=request.resolver_match.url_name %}
+      <a href='{% url "accueil" %}' class="{% if current == 'accueil' %}border-b-[3px] border-accent pb-px text-ink no-underline font-gaegu {% else %}text-ink no-underline opacity-70 hover:opacity-100 font-gaegu {% endif %}">Accueil</a>
+      <a href='{% url "documentation" %}' class="{% if current == 'documentation' %}border-b-[3px] border-accent pb-px text-ink no-underline font-gaegu {% else %}text-ink no-underline opacity-70 hover:opacity-100 font-gaegu {% endif %}">Documentation</a>
       <a href="#" class="text-ink no-underline opacity-70 hover:opacity-100 font-gaegu">Résultats</a>
+        {% endwith %}
     </nav>
     <div class="ml-auto flex items-center gap-4">
       <span class="font-display text-[15px] font-bold opacity-70 font-gaegu">FR ▾</span>
